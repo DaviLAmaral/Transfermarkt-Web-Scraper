@@ -194,7 +194,7 @@ class ImageApp:
                     ClubList.append(club_name)
 
                 for i in range(1, (len(Players) * 3), 3):
-                    AgeList.append((str(Age[i]).split("(", 1)[1].split(")", 1)[0]))
+                    AgeList.append((int(Age[i]).split("(", 1)[1].split(")", 1)[0]))
 
                 for i in range(0, len(Positions)):
                     PositionsList.append((str(Positions[i]).split('title="', 1)[1].split('"><')[0]).title())
@@ -253,7 +253,7 @@ class ImageApp:
                 ClubList.append(club_name)
 
             for i in range(1, (len(Players) * 3), 3):
-                AgeList.append((str(Age[i]).split("(", 1)[1].split(")", 1)[0]))
+                AgeList.append((int(Age[i]).split("(", 1)[1].split(")", 1)[0]))
 
             for i in range(0, len(Positions)):
                 PositionsList.append((str(Positions[i]).split('title="', 1)[1].split('"><')[0]).title())
