@@ -1,8 +1,8 @@
 # Transfermarkt Python Scraping
-A simple Trasfermarkt League scraping project using basic python libraries.
+A simple Trasfermarkt League scraping project using some basic python libraries.
 It scrapes player data from all clubs from the selected league.
 
-First of all, run "Setup.py"
+First of all, run "Setup.py" to install all needed libraries
 
 Non Graphic Version:
 1. Run "TransfermarktS.py"
