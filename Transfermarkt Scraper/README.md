@@ -2,9 +2,7 @@
 A simple Trasfermarkt League scraping project using basic python libraries.
 It scrapes player data from all clubs from the selected league.
 
-All used libraries are in "requirements.txt"
-
-First of all, run "pip install -r requirements.txt" on a terminal in the same directory as the archive is saved.
+First of all, run "Setup.py"
 
 Non Graphic Version:
 1. Run "TransfermarktS.py"
