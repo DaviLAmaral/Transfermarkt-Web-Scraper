@@ -6,10 +6,10 @@ import tkinter as tk
 from PIL import Image, ImageTk
 from io import BytesIO
 from tkinter import filedialog
-europa = "https://www.transfermarkt.com.br/wettbewerbe/europa"
-america = "https://www.transfermarkt.com.br/wettbewerbe/amerika"
-asia = "https://www.transfermarkt.com.br/wettbewerbe/asien"
-africa = "https://www.transfermarkt.com.br/wettbewerbe/afrika"
+europa = "https://www.transfermarkt.co.uk/wettbewerbe/europa"
+america = "https://www.transfermarkt.co.uk/wettbewerbe/amerika"
+asia = "https://www.transfermarkt.co.uk/wettbewerbe/asien"
+africa = "https://www.transfermarkt.co.uk/wettbewerbe/afrika"
 Regionsl = []
 Regionsl.append(europa) 
 #for c in range(2,11):
@@ -39,7 +39,7 @@ for i in range(len(Regionsl)):
     for league in leagues:
         link = league.find("a")
         if link and "startseite" in str(link) and "+" not in str(link):
-            websiteL = "https://www.transfermarkt.com.br" + link["href"]
+            websiteL = "https://www.transfermarkt.co.uk" + link["href"]
             if websiteL not in websitesL:
                 websitesL.append(websiteL)
         img = league.find("img")
@@ -58,7 +58,7 @@ for i in range(len(Regionsl)):
 class ImageApp:
     def __init__(self, root, imglinks, flaglinks, leaguenames, flagnames):
         self.root = root
-        self.root.title("Ligas")
+        self.root.title("Transfermarkt Leagues")
 
         self.img_links = imglinks
         self.flag_links = flaglinks
@@ -82,13 +82,13 @@ class ImageApp:
         self.flag_name_label = tk.Label(root, text="")
         self.flag_name_label.pack(side=tk.RIGHT)
 
-        self.prev_button = tk.Button(root, text="Anterior", command=self.show_prev_image)
+        self.prev_button = tk.Button(root, text="Previous", command=self.show_prev_image)
         self.prev_button.pack()
 
-        self.next_button = tk.Button(root, text="Próxima", command=self.show_next_image)
+        self.next_button = tk.Button(root, text="Next", command=self.show_next_image)
         self.next_button.pack()
 
-        botao_salvar = tk.Button(root, text="Salvar Arquivo", command=self.salvar_arquivo)
+        botao_salvar = tk.Button(root, text="Save Excel File To...", command=self.salvar_arquivo)
         botao_salvar.pack()
         
         #botao_ano = tk.Button(root, text="Selecionar Ano", command=self.select_year)
@@ -112,10 +112,10 @@ class ImageApp:
         flag_name = self.flag_names[self.current_flag_index]
         league_url = self.league_links[self.current_league_index]
 
-        self.league_button = tk.Button(root,text="Gerar " + league_name, command=self.open_link)
+        self.league_button = tk.Button(root,text="Generate " + league_name, command=self.open_link)
         self.league_button.pack()
 
-        self.big5_button = tk.Button(root,text="Gerar 5 Grandes Ligas", command=self.big5)
+        self.big5_button = tk.Button(root,text="Generate 'Big Five' Leagues", command=self.big5)
         self.big5_button.pack()
 
         response_img = requests.get(image_url)
@@ -155,7 +155,7 @@ class ImageApp:
             self.big5_button.destroy()
     def big5(self):
         data = []
-        big5l = ["https://www.transfermarkt.com.br/premier-league/startseite/wettbewerb/GB1","https://www.transfermarkt.com.br/laliga/startseite/wettbewerb/ES1","https://www.transfermarkt.com.br/bundesliga/startseite/wettbewerb/L1","https://www.transfermarkt.com.br/ligue-1/startseite/wettbewerb/FR1","https://www.transfermarkt.com.br/serie-a/startseite/wettbewerb/IT1"]
+        big5l = ["https://www.transfermarkt.co.uk/premier-league/startseite/wettbewerb/GB1","https://www.transfermarkt.co.uk/laliga/startseite/wettbewerb/ES1","https://www.transfermarkt.co.uk/bundesliga/startseite/wettbewerb/L1","https://www.transfermarkt.co.uk/ligue-1/startseite/wettbewerb/FR1","https://www.transfermarkt.co.uk/serie-a/startseite/wettbewerb/IT1"]
         for c in range(len(big5l)):
             pageT = str(big5l[c]) #+ self.temporada)
             pageTreeT = requests.get(pageT, headers=headers)
@@ -168,7 +168,7 @@ class ImageApp:
             websites = []
             for club in clubs:
                 link = club.find("a")["href"]
-                website = "https://www.transfermarkt.com.br" + link
+                website = "https://www.transfermarkt.co.uk" + link
                 websites.append(website)
 
             PlayersList = []
@@ -194,7 +194,7 @@ class ImageApp:
                     ClubList.append(club_name)
 
                 for i in range(1, (len(Players) * 3), 3):
-                    AgeList.append((int(Age[i]).split("(", 1)[1].split(")", 1)[0]))
+                    AgeList.append((str(Age[i]).split("(", 1)[1].split(")", 1)[0]))
 
                 for i in range(0, len(Positions)):
                     PositionsList.append((str(Positions[i]).split('title="', 1)[1].split('"><')[0]).title())
@@ -227,7 +227,7 @@ class ImageApp:
         websites = []
         for club in clubs:
             link = club.find("a")["href"]
-            website = "https://www.transfermarkt.com.br" + link
+            website = "https://www.transfermarkt.co.uk" + link
             websites.append(website)
 
         PlayersList = []
@@ -253,7 +253,7 @@ class ImageApp:
                 ClubList.append(club_name)
 
             for i in range(1, (len(Players) * 3), 3):
-                AgeList.append((int(Age[i]).split("(", 1)[1].split(")", 1)[0]))
+                AgeList.append((str(Age[i]).split("(", 1)[1].split(")", 1)[0]))
 
             for i in range(0, len(Positions)):
                 PositionsList.append((str(Positions[i]).split('title="', 1)[1].split('"><')[0]).title())
@@ -272,7 +272,7 @@ class ImageApp:
                     #cleaned_values.append(0.0)
             
         data = zip_longest(PlayersList, ClubList, AgeList, PositionsList, NationList, ValuesList)
-        df = pd.DataFrame(data, columns=['Jogador','Clube', 'Idade', 'Posição', 'Nacionalidade', "Valor"])
+        df = pd.DataFrame(data, columns=['Player','Club', 'Age', 'Position', 'Nationality', "Value"])
         df.to_excel(self.caminho_arquivo, index=False)
 
 if __name__ == "__main__":
